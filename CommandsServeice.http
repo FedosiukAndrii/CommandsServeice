@@ -1,0 +1,6 @@
+@CommandsServeice_HostAddress = http://localhost:5144
+
+GET {{CommandsServeice_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
