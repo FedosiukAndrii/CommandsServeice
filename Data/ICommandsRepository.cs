@@ -10,6 +10,7 @@ public interface ICommandsRepository
     Task CreatePlatform(Platform platform);
 
     Task<bool> PlatformExists(int platformId);
+    Task<bool> ExternalPlatformExists (int externalPlatformId);
     #endregion
 
     #region Commands

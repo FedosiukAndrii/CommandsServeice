@@ -21,7 +21,7 @@ public class CommandsController(ICommandsRepository repository, IMapper mapper) 
 
         await repository.CreateCommand(platformId, command);
 
-        var commandReadDto = mapper.Map<CommandReadDto>(command);
+        var commandReadDto = mapper.Map<CommandReadDTO>(command);
 
         return CreatedAtRoute(nameof(GetCommandForPlatform), new {platformId, commandId = commandReadDto.Id }, commandReadDto);
     }
@@ -36,7 +36,7 @@ public class CommandsController(ICommandsRepository repository, IMapper mapper) 
         
         var commands = await repository.GetCommandsForPlatform(platformId); 
 
-        return Ok(mapper.Map<CommandReadDto>(commands));
+        return Ok(mapper.Map<CommandReadDTO>(commands));
     }
 
     [HttpGet("{commandId:int}", Name = "GetCommandForPlatform")]
@@ -52,6 +52,6 @@ public class CommandsController(ICommandsRepository repository, IMapper mapper) 
         if(command is null)
             return NotFound();
 
-        return Ok(mapper.Map<CommandReadDto>(command));
+        return Ok(mapper.Map<CommandReadDTO>(command));
     }
 }

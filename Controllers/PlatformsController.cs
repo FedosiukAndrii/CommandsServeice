@@ -15,7 +15,7 @@ public class PlatformsController(ICommandsRepository repository, IMapper mapper)
 
         var platformItems = await repository.GetAllPlatforms();
 
-        return Ok(mapper.Map<IEnumerable<PlatformReadDto>>(platformItems));
+        return Ok(mapper.Map<IEnumerable<PlatformReadDTO>>(platformItems));
     }
 
     [HttpPost]

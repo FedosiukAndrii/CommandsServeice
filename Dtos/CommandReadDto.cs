@@ -1,6 +1,6 @@
 ﻿namespace CommandsServeice.Dtos;
 
-public class CommandReadDto
+public class CommandReadDTO
 {
     public int Id { get; set; }
 
