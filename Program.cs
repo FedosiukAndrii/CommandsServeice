@@ -19,8 +19,7 @@ builder.Services.AddScoped<ICommandsRepository, CommandRepository>();
 builder.Services.AddScoped<IAsyncEventHandler<PlatformPublishedEvent>, PlatformPublishEventHandler>();
 
 builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
-builder.Services.AddSingleton<IEventParser, EventParser>();
-builder.Services.AddSingleton<IEventTypeRegistry, EventTypeRegistry>();
+builder.Services.AddSingleton<IEventDispatcher, EventDispatcher>();
 
 builder.Services.AddHostedService<MessageBusSubscriber>();
 

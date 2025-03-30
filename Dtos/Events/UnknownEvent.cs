@@ -4,9 +4,8 @@ using CommandsServeice.Interfaces;
 
 namespace CommandsServeice.Dtos.Events;
 
-[EventType("Unknown")]
-public record UnknownEvent(string Event)
-    : IEvent
+[EventType(EventType.Unknown)]
+public record UnknownEvent(string Event): IEvent
 {
     public EventType Type => EventType.Unknown;
 }

@@ -1,8 +1,10 @@
-﻿namespace CommandsServeice.Attributes;
+﻿using CommandsServeice.Enums;
+
+namespace CommandsServeice.Attributes;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 
-public class EventTypeAttribute(string eventName) : Attribute
+public class EventTypeAttribute(EventType eventName) : Attribute
 {
-    public string EventName { get; } = eventName;
+    public EventType EventType { get; } = eventName;
 }

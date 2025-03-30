@@ -4,7 +4,7 @@ using CommandsServeice.Interfaces;
 
 namespace CommandsServeice.Dtos.Events;
 
-[EventType("Platform_Published")]
+[EventType(EventType.PlatformPublished)]
 public record PlatformPublishedEvent(string Event, int PlatformId, string Name, int Id): IEvent
 {
     public EventType Type => EventType.PlatformPublished;

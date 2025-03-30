@@ -1,26 +1,23 @@
 ﻿using CommandsServeice.Attributes;
+using CommandsServeice.Enums;
 using CommandsServeice.Interfaces;
 using System.Reflection;
 
 namespace CommandsServeice.EventProcessing;
 
-public class EventTypeRegistry : IEventTypeRegistry
+public static class EventTypeRegistry 
 {
-    private readonly Dictionary<string, Type> _eventMap;
+    private static readonly Dictionary<EventType, Type> EventMap = Assembly.GetExecutingAssembly()
+        .GetTypes()
+        .Where(t => typeof(IEvent).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
+        .Select(t => new
+        {
+            Type = t,
+            Attribute = t.GetCustomAttribute<EventTypeAttribute>()
+        })
+        .Where(x => x.Attribute != null)
+        .ToDictionary(x => x.Attribute!.EventType, x => x.Type);
 
-    public EventTypeRegistry()
-    {
-        _eventMap = Assembly.GetExecutingAssembly()
-            .GetTypes()
-            .Where(t => typeof(IEvent).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
-            .Select(t => new
-            {
-                Type = t,
-                Attribute = t.GetCustomAttribute<EventTypeAttribute>()
-            })
-            .Where(x => x.Attribute != null)
-            .ToDictionary(x => x.Attribute!.EventName, x => x.Type);
-    }
 
-    public Type Resolve(string eventName) => _eventMap.TryGetValue(eventName, out var type) ? type : null;
+    public static Type Resolve(EventType eventType) => EventMap.TryGetValue(eventType, out var type) ? type : null;
 }
