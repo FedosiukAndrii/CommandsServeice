@@ -8,6 +8,7 @@ public interface ICommandsRepository
     Task<IEnumerable<Platform>> GetAllPlatforms();
 
     Task CreatePlatform(Platform platform);
+    Task CreatePlatforms(IEnumerable<Platform> platforms);
 
     Task<bool> PlatformExists(int platformId);
     Task<bool> ExternalPlatformExists (int externalPlatformId);

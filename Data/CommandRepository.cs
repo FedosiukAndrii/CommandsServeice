@@ -25,6 +25,15 @@ public class CommandRepository(AppDbContext db) : ICommandsRepository
         await db.SaveChangesAsync();
     }
 
+    public async Task CreatePlatforms(IEnumerable<Platform> platforms)
+    {
+        ArgumentNullException.ThrowIfNull(platforms);
+
+        await db.Platforms.AddRangeAsync(platforms);
+
+        await db.SaveChangesAsync();
+    }
+
     public Task<bool> ExternalPlatformExists(int externalPlatformId) => db.Platforms.AnyAsync(p => p.ExternalId == externalPlatformId);
 
     public async Task<IEnumerable<Platform>> GetAllPlatforms() => await db.Platforms.ToListAsync();
