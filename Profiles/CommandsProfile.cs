@@ -10,7 +10,11 @@ public class CommandsProfile : Profile
     public CommandsProfile()
     {
         CreateMap<Platform, PlatformReadDTO>();
+
+        CreateMap<CommandCreateDto, Command>();
+
         CreateMap<CommandReadDTO, Command>();
+
         CreateMap<Command, CommandReadDTO>();
 
         CreateMap<PlatformPublishedEvent, Platform>()

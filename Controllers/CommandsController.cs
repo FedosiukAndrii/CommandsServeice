@@ -36,7 +36,7 @@ public class CommandsController(ICommandsRepository repository, IMapper mapper) 
         
         var commands = await repository.GetCommandsForPlatform(platformId); 
 
-        return Ok(mapper.Map<CommandReadDTO>(commands));
+        return Ok(mapper.Map<IEnumerable<CommandReadDTO>>(commands));
     }
 
     [HttpGet("{commandId:int}", Name = "GetCommandForPlatform")]
